@@ -5,7 +5,9 @@ from cvlib.object_detection import draw_bbox
 import streamlit as st
 import streamlit.components.v1 as components
 
+
 file = st.file_uploader(label="Загрузите фотографию")
+print(file)
 detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
 
 def detect_objects(img_path):

@@ -1,4 +1,3 @@
 cvlib
 matplotlib
 opencv-python
-cv2

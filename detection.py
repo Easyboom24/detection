@@ -6,18 +6,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 import tempfile
 
-
-file = st.file_uploader(label="Загрузите фотографию")
-detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
-if file is not None:
-    temp = tempfile.NamedTemporaryFile(mode="wb")
-    bytes_data = file.getvalue()
-    temp.write(bytes_data)
-    if(detected=="Детекция лиц"):
-        detect_faces(temp.name)
-    elif(detected=="Детекция объектов"):
-        detect_objects(temp.name)
-
 def detect_objects(img_path):
     im = cv2.imread(img_path)
     bbox, label, conf = cv.detect_common_objects(im)
@@ -39,3 +27,14 @@ def detect_faces(img_path):
     st.image(im)
     #plt.imshow(im)
     #plt.show()
+
+file = st.file_uploader(label="Загрузите фотографию")
+detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
+if file is not None:
+    temp = tempfile.NamedTemporaryFile(mode="wb")
+    bytes_data = file.getvalue()
+    temp.write(bytes_data)
+    if(detected=="Детекция лиц"):
+        detect_faces(temp.name)
+    elif(detected=="Детекция объектов"):
+        detect_objects(temp.name)

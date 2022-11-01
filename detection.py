@@ -16,6 +16,7 @@ def detect_objects(img_path):
     bbox, label, conf = cv.detect_common_objects(im)
     output_image = draw_bbox(im, bbox, label, conf)
     image = Image.open("velo.jpg")
+    print(image.print)                     
     st.image(image)
     #plt.imshow(output_image)
     #plt.show()
@@ -37,7 +38,3 @@ if(detected=="Детекция лиц"):
     detect_faces("velo.jpg")
 elif(detected=="Детекция объектов"):
     detect_objects(file)
-
-
-
-

@@ -30,9 +30,10 @@ def detect_faces(img_path):
         (startX, startY) = face[0],face[1]
         (endX, endY) = face[2],face[3]
         cv2.rectangle(im,(startX,startY),(endX,endY),(0,255,0),2)
-
-    plt.imshow(im)
-    plt.show()
+    
+    st.image(im)
+    #plt.imshow(im)
+    #plt.show()
 
 if(detected=="Детекция лиц"):
     detect_faces("velo.jpg")

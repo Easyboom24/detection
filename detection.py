@@ -4,6 +4,7 @@ import cvlib as cv
 from cvlib.object_detection import draw_bbox
 import streamlit as st
 import streamlit.components.v1 as components
+from PIL import Image
 
 
 file = st.file_uploader(label="Загрузите фотографию")
@@ -14,7 +15,8 @@ def detect_objects(img_path):
     im= cv2.imread(img_path)
     bbox, label, conf = cv.detect_common_objects(im)
     output_image = draw_bbox(im, bbox, label, conf)
-    st.pyplot(output_image)
+    image = Image.open(output_image)
+    st.image(image)
     #plt.imshow(output_image)
     #plt.show()
 

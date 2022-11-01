@@ -8,16 +8,21 @@ from PIL import Image
 
 
 file = st.file_uploader(label="Загрузите фотографию")
-print(file)
-detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
+if file is not None:
+    temp = tempfile.NamedTemporaryFile(mode="wb")
+    bytes_data = file.getvalue()
+    temp.write(bytes_data)
+    detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
+    if(detected=="Детекция лиц"):
+        detect_faces(temp.name)
+    elif(detected=="Детекция объектов"):
+        detect_objects(temp.name)
 
 def detect_objects(img_path):
-    im= cv2.imread(img_path)
+    im = cv2.imread(img_path)
     bbox, label, conf = cv.detect_common_objects(im)
-    output_image = draw_bbox(im, bbox, label, conf)
-    image = Image.open("velo.jpg")
-    print(image.print)                     
-    st.image(image)
+    output_image = draw_bbox(im, bbox, label, conf)                   
+    st.image(im)
     #plt.imshow(output_image)
     #plt.show()
 
@@ -34,8 +39,3 @@ def detect_faces(img_path):
     st.image(im)
     #plt.imshow(im)
     #plt.show()
-
-if(detected=="Детекция лиц"):
-    detect_faces("velo.jpg")
-elif(detected=="Детекция объектов"):
-    detect_objects(file)

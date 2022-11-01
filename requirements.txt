@@ -1,2 +1,2 @@
 cvlib
-mathplotlib
+matplotlib

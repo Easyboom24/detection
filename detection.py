@@ -5,6 +5,9 @@ from cvlib.object_detection import draw_bbox
 import streamlit as st
 import streamlit.components.v1 as components
 
+file = st.file_uploader(label="Загрузите фотографию")
+detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
+
 def detect_objects(img_path):
     im= cv2.imread(img_path)
     bbox, label, conf = cv.detect_common_objects(im)
@@ -24,10 +27,6 @@ def detect_faces(img_path):
 
     plt.imshow(im)
     plt.show()
-
-file = st.file_uploader(label="Загрузите фотографию")
-detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
-
 
 if(detected=="Детекция лиц"):
     detect_faces(file.name)

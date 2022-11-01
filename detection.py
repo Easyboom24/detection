@@ -13,7 +13,6 @@ if file is not None:
     temp = tempfile.NamedTemporaryFile(mode="wb")
     bytes_data = file.getvalue()
     temp.write(bytes_data)
-    detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
     if(detected=="Детекция лиц"):
         detect_faces(temp.name)
     elif(detected=="Детекция объектов"):

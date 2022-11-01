@@ -4,10 +4,11 @@ import cvlib as cv
 from cvlib.object_detection import draw_bbox
 import streamlit as st
 import streamlit.components.v1 as components
-from PIL import Image
+import tempfile
 
 
 file = st.file_uploader(label="Загрузите фотографию")
+detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
 if file is not None:
     temp = tempfile.NamedTemporaryFile(mode="wb")
     bytes_data = file.getvalue()

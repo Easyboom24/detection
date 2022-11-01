@@ -14,8 +14,9 @@ def detect_objects(img_path):
     im= cv2.imread(img_path)
     bbox, label, conf = cv.detect_common_objects(im)
     output_image = draw_bbox(im, bbox, label, conf)
-    plt.imshow(output_image)
-    plt.show()
+    st.image(output_image)
+    #plt.imshow(output_image)
+    #plt.show()
 
 def detect_faces(img_path):
     im= cv2.imread(img_path)

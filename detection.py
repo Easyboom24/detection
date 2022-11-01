@@ -31,7 +31,7 @@ def detect_faces(img_path):
     plt.show()
 
 if(detected=="Детекция лиц"):
-    detect_faces("velo.jpg")
+    detect_faces("vel.jpg")
 elif(detected=="Детекция объектов"):
     detect_objects(file)
 

@@ -1,19 +1,24 @@
+#импорт библиотек проекта
 import cv2
 import matplotlib.pyplot as plt
 import cvlib as cv
 from cvlib.object_detection import draw_bbox
-import streamlit as st
-import streamlit.components.v1 as components
 import tempfile
 
+#импорт библиотек streamlit
+import streamlit as st
+import streamlit.components.v1 as components
+
+#функция проекта, поиска объектов
 def detect_objects(img_path):
     im = cv2.imread(img_path)
     bbox, label, conf = cv.detect_common_objects(im)
-    output_image = draw_bbox(im, bbox, label, conf)                   
+    output_image = draw_bbox(im, bbox, label, conf)
+    
+    #streamlit функция - вывод полученного изображения
     st.image(im)
-    #plt.imshow(output_image)
-    #plt.show()
 
+#функция проекта, поиска лиц
 def detect_faces(img_path):
     im= cv2.imread(img_path)
 
@@ -24,12 +29,15 @@ def detect_faces(img_path):
         (endX, endY) = face[2],face[3]
         cv2.rectangle(im,(startX,startY),(endX,endY),(0,255,0),2)
     
+    #streamlit функция - вывод полученного изображения
     st.image(im)
-    #plt.imshow(im)
-    #plt.show()
 
+#streamlit функция - поле для загрузки изображения со страницы
 file = st.file_uploader(label="Загрузите фотографию")
+#streamlit функция - radio кнопки для выбора действия
 detected = st.radio("Выберите, что нужно детектировать",("Детекция лиц","Детекция объектов"))
+
+#основной код для проверки загруженного файла и исполнения функций проекта
 if file is not None:
     temp = tempfile.NamedTemporaryFile(mode="wb")
     bytes_data = file.getvalue()

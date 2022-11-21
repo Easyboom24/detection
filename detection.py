@@ -7,7 +7,6 @@ import tempfile
 
 #импорт библиотек streamlit
 import streamlit as st
-import streamlit.components.v1 as components
 
 #функция проекта, поиска объектов
 def detect_objects(img_path):

@@ -15,7 +15,7 @@ def detect_objects(img_path):
     output_image = draw_bbox(im, bbox, label, conf)
     
     #streamlit функция - вывод полученного изображения
-    st.image(output_image)
+    st.image(im)
 
 #функция проекта, поиска лиц
 def detect_faces(img_path):

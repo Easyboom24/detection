@@ -2,3 +2,4 @@ cvlib
 matplotlib
 opencv-python-headless
 tensorflow
+opencv-python
